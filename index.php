@@ -12,6 +12,15 @@ foreach ($period as $day) {
   $body .= sprintf('<td class="youbi_%d">%d</td>',$day->format('w'), $day->format('d'));
 }
 
+
+$head = '';
+$firstDayOfNextMonth = new DateTime('first day of next month');
+while ($firstDayOfNextMonth->format('w') > 0) {
+  $head .= sprintf('<td class="gray">%d</td>',$firstDayOfNextMonth->format('d'));
+  $firstDayOfNextMonth->add(new DateInterval('P1D'));
+}
+
+
 function h($s) {
   return htmlspecialchars($s, ENT_QUOTES, 'UTF-8');
 }
@@ -25,6 +34,7 @@ function h($s) {
   <title>Calendar</title>
 </head>
 <body>
+  <?php echo $firstDayOfNextMonth->format('y-m-d-w'); ?>
   <table>
     <thead>
       <tr>
@@ -44,7 +54,7 @@ function h($s) {
         <td>Sat</td>
       </tr>
       <tr>
-        <?php echo $body; ?>
+        <?php echo $body . $head; ?>
         <!-- <td class="youbi_0">1</td>
         <td class="youbi_1">2</td>
         <td class="youbi_2">3</td>
