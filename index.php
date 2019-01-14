@@ -8,7 +8,12 @@ $period = new DatePeriod(
 );
 
 foreach ($period as $day) {
-  $body .= sprintf('<td>%d</td>', $day->format('d'));
+  if ($day->format('w') % 7 == 0){$body .= '</tr><tr>';}
+  $body .= sprintf('<td class="youbi_%d">%d</td>',$day->format('w'), $day->format('d'));
+}
+
+function h($s) {
+  return htmlspecialchars($s, ENT_QUOTES, 'UTF-8');
 }
 
 ?>
