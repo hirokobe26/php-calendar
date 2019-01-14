@@ -1,5 +1,6 @@
 <?php
   require_once(__DIR__ . '/calendar.php');
+  $calendar = new Calendar();
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -9,7 +10,6 @@
   <title>Calendar</title>
 </head>
 <body>
-  <?php echo $firstDayOfNextMonth->format('y-m-d-w'); ?>
   <table>
     <thead>
       <tr>
@@ -29,7 +29,7 @@
         <td>Sat</td>
       </tr>
       <tr>
-        <?php echo $body . $head; ?>
+        <?php echo $calendar->show_body(); ?>
         <!-- <td class="youbi_0">1</td>
         <td class="youbi_1">2</td>
         <td class="youbi_2">3</td>

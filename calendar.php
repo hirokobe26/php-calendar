@@ -1,10 +1,10 @@
 <?php
 
 class Calendar {
-    public $body;
-    public $head;
-    public $period;
-    public $firstDayOfNextMonth;
+    private $body;
+    private $head;
+    private $period;
+    private $firstDayOfNextMonth;
 
     public function __construct() {
       $this->body = '';
@@ -19,43 +19,20 @@ class Calendar {
 
     public function show_body() {
       foreach ($this->period as $day) {
-        if ($day->format('w') % 7 === 0) { $body .= '</tr><tr>'; }
+        if ($day->format('w') % 7 === 0) { $this->body .= '</tr><tr>'; }
         $this->body .= sprintf('<td class="youbi_%d">%d</td>', $day->format('w'), $day->format('d'));
       }
       return $this->body;
     }
 
-    public function show_head () {
+    public function show_head() {
       $firstDayOfNextMonth = new DateTime('first day of next month');
       while ($firstDayOfNextMonth->format('w') > 0) {
         $head .= sprintf('<td class="gray">%d</td>', $firstDayOfNextMonth->format('d'));
         $firstDayOfNextMonth->add(new DateInterval('P1D'));
+        //DatatimeObjectの日にちを1日進める
       }
+      return $firstDayOfNextMonth;
     }
 }
 
-
-
-
-
-
-
-
-
-$body = '';
-$period = new DatePeriod(
-  new DateTime('first day of this month'),
-  new DateInterval('P1D'),
-  new DateTime('first day of next month')
-);
-foreach ($period as $day) {
-  if ($day->format('w') % 7 === 0) { $body .= '</tr><tr>'; }
-  $body .= sprintf('<td class="youbi_%d">%d</td>', $day->format('w'), $day->format('d'));
-}
-
-$head = '';
-$firstDayOfNextMonth = new DateTime('first day of next month');
-while ($firstDayOfNextMonth->format('w') > 0) {
-  $head .= sprintf('<td class="gray">%d</td>', $firstDayOfNextMonth->format('d'));
-  $firstDayOfNextMonth->add(new DateInterval('P1D'));
-}
