@@ -4,7 +4,7 @@ class Calendar {
     private $body;
     private $head;
     private $period;
-    private $firstDayOfNextMonth;
+    public $firstDayOfNextMonth;
 
     public function __construct() {
       $this->body = '';
@@ -26,13 +26,12 @@ class Calendar {
     }
 
     public function show_head() {
-      $firstDayOfNextMonth = new DateTime('first day of next month');
-      while ($firstDayOfNextMonth->format('w') > 0) {
-        $head .= sprintf('<td class="gray">%d</td>', $firstDayOfNextMonth->format('d'));
-        $firstDayOfNextMonth->add(new DateInterval('P1D'));
+      while ($this->firstDayOfNextMonth->format('w') > 0) {
+        $this->head .= sprintf('<td class="gray">%d</td>', $this->firstDayOfNextMonth->format('d'));
+        $this->firstDayOfNextMonth->add(new DateInterval('P1D'));
         //DatatimeObjectの日にちを1日進める
       }
-      return $firstDayOfNextMonth;
+      return $this->head;
     }
 }
 
