@@ -16,6 +16,7 @@ class Calendar {
         new DateTime('first day of this month'),
         new DateInterval('P1D'),
         new DateTime('first day of next month')
+        //最終日を含む場合は、来月の日付までを指定してあげる
       );
       $this->firstDayOfNextMonth = new DateTime('first day of next month');
       $this->lastDayOfPreviousMonth = new DateTime('last day of previous month');
