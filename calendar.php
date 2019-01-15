@@ -4,7 +4,7 @@ class Calendar {
     private $body;
     private $head;
     private $tail;
-    private $period;
+    public $period;
     private $firstDayOfNextMonth;
     private $lastDayOfPreviousMonth;
 
@@ -45,6 +45,22 @@ class Calendar {
         $this->lastDayOfPreviousMonth->sub(new DateInterval('P1D'));
       }
       return $this->tail;
+    }
+
+    public function show_calendar(){
+      return  '<tr>' . $this->show_tail() . $this->show_body() . $this->show_head() . '</tr>';
+    }
+
+    public function show_day_of_the_week(){
+      return '<tr>
+                <td>Sun</td>
+                <td>Mon</td>
+                <td>Tue</td>
+                <td>Wed</td>
+                <td>Thu</td>
+                <td>Fri</td>
+                <td>Sat</td>
+             </tr>';
     }
 }
 

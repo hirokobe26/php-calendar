@@ -19,34 +19,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>Sun</td>
-        <td>Mon</td>
-        <td>Tue</td>
-        <td>Wed</td>
-        <td>Thu</td>
-        <td>Fri</td>
-        <td>Sat</td>
-      </tr>
-      <tr>
-        <?php echo $calendar->show_tail() . $calendar->show_body() . $calendar->show_head(); ?>
-        <!-- <td class="youbi_0">1</td>
-        <td class="youbi_1">2</td>
-        <td class="youbi_2">3</td>
-        <td class="youbi_3">4</td>
-        <td class="youbi_4 today">5</td>
-        <td class="youbi_5">6</td>
-        <td class="youbi_6">8</td>
-      </tr>
-      <tr>
-        <td class="youbi_0">30</td>
-        <td class="youbi_1">31</td>
-        <td class="gray">1</td>
-        <td class="gray">2</td>
-        <td class="gray">3</td>
-        <td class="gray">4</td>
-        <td class="gray">5</td> -->
-      </tr>
+      <?php echo $calendar->show_day_of_the_week(); ?>
+      <?php echo $calendar->show_calendar(); ?>
     </tbody>
     <tfoot>
       <tr>
