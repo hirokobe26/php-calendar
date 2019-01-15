@@ -4,7 +4,7 @@ class Calendar {
     private $body;
     private $head;
     private $period;
-    public $firstDayOfNextMonth;
+    private $firstDayOfNextMonth;
 
     public function __construct() {
       $this->body = '';

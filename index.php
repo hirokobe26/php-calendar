@@ -10,7 +10,6 @@
   <title>Calendar</title>
 </head>
 <body>
-  <?php var_dump($calendar->firstDayOfNextMonth); ?>
   <table>
     <thead>
       <tr>
