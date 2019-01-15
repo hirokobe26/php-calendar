@@ -3,18 +3,22 @@
 class Calendar {
     private $body;
     private $head;
+    private $tail;
     private $period;
     private $firstDayOfNextMonth;
+    private $lastDayOfPreviousMonth;
 
     public function __construct() {
       $this->body = '';
       $this->head = '';
+      $this->tail = '';
       $this->period = new DatePeriod(
         new DateTime('first day of this month'),
         new DateInterval('P1D'),
         new DateTime('first day of next month')
       );
       $this->firstDayOfNextMonth = new DateTime('first day of next month');
+      $this->lastDayOfPreviousMonth = new DateTime('last day of previous month');
     }
 
     public function show_body() {
@@ -32,6 +36,14 @@ class Calendar {
         //DatatimeObjectの日にちを1日進める
       }
       return $this->head;
+    }
+
+    public function show_tail() {
+      while($this->lastDayOfPreviousMonth->format('w') < 6){
+        $this->tail = sprintf('<td class="gray">%d</td>', $this->lastDayOfPreviousMonth->format('d')) . $this->tail;
+        $this->lastDayOfPreviousMonth->sub(new DateInterval('P1D'));
+      }
+      return $this->tail;
     }
 }
 

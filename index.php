@@ -29,7 +29,7 @@
         <td>Sat</td>
       </tr>
       <tr>
-        <?php echo $calendar->show_body() . $calendar->show_head(); ?>
+        <?php echo $calendar->show_tail() . $calendar->show_body() . $calendar->show_head(); ?>
         <!-- <td class="youbi_0">1</td>
         <td class="youbi_1">2</td>
         <td class="youbi_2">3</td>
