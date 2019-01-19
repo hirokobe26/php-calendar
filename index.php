@@ -1,26 +1,41 @@
 <?php
-  require_once(__DIR__ . '/calendar.php');
-  $calendar = new Calendar();
+
+require 'calendar.php';
+
+function h($s) {
+  return htmlspecialchars($s, ENT_QUOTES, 'UTF-8');
+}
+
+$cal = new \MyApp\Calendar();
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="stylesheet.css">
   <title>Calendar</title>
+  <link rel="stylesheet" href="stylesheet.css">
 </head>
 <body>
   <table>
     <thead>
       <tr>
-        <th><a href="/?t=<?php echo $calendar->h($calendar->previosMonth); ?>">&laquo;</a></th>
-        <th colspan="5"><?php echo $calendar->show_year_month(); ?></th>
-        <th><a href="/?t=<?php echo $calendar->h($calendar->nextMonth); ?>">&raquo;</a></th>
+        <th><a href="/?t=<?php echo h($cal->prev); ?>">&laquo;</a></th>
+        <th colspan="5"><?php echo h($cal->yearMonth); ?></th>
+        <th><a href="/?t=<?php echo h($cal->next); ?>">&raquo;</a></th>
       </tr>
     </thead>
     <tbody>
-      <?php echo $calendar->show_day_of_the_week(); ?>
-      <?php echo $calendar->show_calendar(); ?>
+      <tr>
+        <td>Sun</td>
+        <td>Mon</td>
+        <td>Tue</td>
+        <td>Wed</td>
+        <td>Thu</td>
+        <td>Fri</td>
+        <td>Sat</td>
+      </tr>
+      <?php $cal->show(); ?>
     </tbody>
     <tfoot>
       <tr>
