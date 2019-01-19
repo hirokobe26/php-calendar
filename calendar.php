@@ -5,9 +5,11 @@ class Calendar {
     private $head;
     private $tail;
     private $period;
+    private $dt;
+    public $previosMonth;
+    public $nextMonth;
     private $thisMonth;
     private $yearMonth;
-    private $t;
     private $firstDayOfNextMonth;
     private $lastDayOfPreviousMonth;
 
@@ -23,6 +25,10 @@ class Calendar {
       }catch (Exception $e){
         $this->thisMonth = new DateTime('first day of this month');
       }
+      $this->dt = clone $this->thisMonth;
+      $this->previosMonth = $this->dt->modify('-1 month')->format('Y-m');
+      $this->dt = clone $this->thisMonth;
+      $this->nextMonth = $this->dt->modify('+1 month')->format('Y-m');
       $this->yearMonth = $this->thisMonth->format('F Y');
       $this->period = new DatePeriod(
         new DateTime('first day of' . $this->yearMonth),
@@ -77,6 +83,10 @@ class Calendar {
 
     public function show_year_month(){
       return $this->yearMonth;
+    }
+
+    public function h($s){
+      return htmlspecialchars($s,ENT_QUOTES, 'utf-8');
     }
 }
 

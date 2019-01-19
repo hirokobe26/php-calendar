@@ -13,9 +13,9 @@
   <table>
     <thead>
       <tr>
-        <th><a href="">&laquo;</a></th>
+        <th><a href="/?t=<?php echo $calendar->h($calendar->previosMonth); ?>">&laquo;</a></th>
         <th colspan="5"><?php echo $calendar->show_year_month(); ?></th>
-        <th><a href="">&raquo;</a></th>
+        <th><a href="/?t=<?php echo $calendar->h($calendar->nextMonth); ?>">&raquo;</a></th>
       </tr>
     </thead>
     <tbody>
@@ -24,7 +24,7 @@
     </tbody>
     <tfoot>
       <tr>
-        <th colspan="7"><a href="">Today</a></th>
+        <th colspan="7"><a href="/">Today</a></th>
       </tr>
     </tfoot>
   </table>
