@@ -70,7 +70,7 @@ class Calendar {
     }
 
     public function show_year_month(){
-
+      return $this->yearMonth;
     }
 }
 
