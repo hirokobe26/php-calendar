@@ -15,8 +15,14 @@ class Calendar {
       $this->body = '';
       $this->head = '';
       $this->tail = '';
-      $this->t    = '2015-09';
-      $this->thisMonth = new DateTime($this->t);
+      try {
+        if (!isset($_GET['t']) || !preg_match('/\A\d{4}-\d{2}\z/', $_GET['t'])) {
+          throw new Exception();
+        }
+        $this->thisMonth = new DateTime($_GET['t']);
+      }catch (Exception $e){
+        $this->thisMonth = new DateTime('first day of this month');
+      }
       $this->yearMonth = $this->thisMonth->format('F Y');
       $this->period = new DatePeriod(
         new DateTime('first day of' . $this->yearMonth),
