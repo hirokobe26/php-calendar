@@ -6,6 +6,8 @@ class Calendar {
     private $tail;
     private $period;
     private $dt;
+    private $today;
+    private $todayClass;
     public $previosMonth;
     public $nextMonth;
     private $thisMonth;
@@ -25,6 +27,8 @@ class Calendar {
       }catch (Exception $e){
         $this->thisMonth = new DateTime('first day of this month');
       }
+      $this->today = new DateTime('today');
+      $this->todayClass = '';
       $this->dt = clone $this->thisMonth;
       $this->previosMonth = $this->dt->modify('-1 month')->format('Y-m');
       $this->dt = clone $this->thisMonth;
@@ -43,7 +47,8 @@ class Calendar {
     public function show_body() {
       foreach ($this->period as $day) {
         if ($day->format('w') % 7 === 0) { $this->body .= '</tr><tr>'; }
-        $this->body .= sprintf('<td class="youbi_%d">%d</td>', $day->format('w'), $day->format('d'));
+        if ($this->today->format('Y-m-d') === $day->format('Y-m-d')){$this->todayClass = 'today';}else{$this->todayClass = '';}
+        $this->body .= sprintf('<td class="youbi_%d %s">%d</td>', $day->format('w'), $this->todayClass, $day->format('d'));
       }
       return $this->body;
     }
