@@ -4,7 +4,10 @@ class Calendar {
     private $body;
     private $head;
     private $tail;
-    public $period;
+    private $period;
+    private $thisMonth;
+    private $yearMonth;
+    private $t;
     private $firstDayOfNextMonth;
     private $lastDayOfPreviousMonth;
 
@@ -12,14 +15,17 @@ class Calendar {
       $this->body = '';
       $this->head = '';
       $this->tail = '';
+      $this->t    = '2015-09';
+      $this->thisMonth = new DateTime($this->t);
+      $this->yearMonth = $this->thisMonth->format('F Y');
       $this->period = new DatePeriod(
-        new DateTime('first day of this month'),
+        new DateTime('first day of' . $this->yearMonth),
         new DateInterval('P1D'),
-        new DateTime('first day of next month')
+        new DateTime('first day of' . $this->yearMonth . '+1 month')
         //最終日を含む場合は、来月の日付までを指定してあげる
       );
-      $this->firstDayOfNextMonth = new DateTime('first day of next month');
-      $this->lastDayOfPreviousMonth = new DateTime('last day of previous month');
+      $this->firstDayOfNextMonth = new DateTime('first day of' . $this->yearMonth . '+1 month');
+      $this->lastDayOfPreviousMonth = new DateTime('last day of' .   $this->yearMonth . '-1 month');
     }
 
     public function show_body() {
@@ -61,6 +67,10 @@ class Calendar {
                 <td>Fri</td>
                 <td>Sat</td>
              </tr>';
+    }
+
+    public function show_year_month(){
+
     }
 }
 

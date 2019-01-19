@@ -14,7 +14,7 @@
     <thead>
       <tr>
         <th><a href="">&laquo;</a></th>
-        <th colspan="5">August 2015</th>
+        <th colspan="5"><?php echo $calendar->yearMonth; ?></th>
         <th><a href="">&raquo;</a></th>
       </tr>
     </thead>
